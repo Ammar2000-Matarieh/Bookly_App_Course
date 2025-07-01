@@ -10,6 +10,7 @@ class HomeView extends StatelessWidget {
   }
 }
 
+/// عندما اريد استدعاء function في بدايه اي شاشه في خيارين اما تحويل الي state full or bloc provider ..name of method : ///
 
 // view model is equal == controller when use MVVM or MVC : 
 

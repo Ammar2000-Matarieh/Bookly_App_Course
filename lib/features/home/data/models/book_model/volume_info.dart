@@ -1,8 +1,8 @@
+import 'package:bookly/features/home/data/models/book_model/panelization_summary.dart';
 import 'package:equatable/equatable.dart';
 
 import 'image_links.dart';
 import 'industry_identifier.dart';
-import 'panelization_summary.dart';
 import 'reading_modes.dart';
 
 class VolumeInfo extends Equatable {
@@ -54,6 +54,7 @@ class VolumeInfo extends Equatable {
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
     title: json['title'] as String?,
+    // casting
     authors: (json['authors'] as List<dynamic>?)?.cast<String>(),
     publisher: json['publisher'] as String?,
     publishedDate: json['publishedDate'] as String?,
@@ -66,6 +67,7 @@ class VolumeInfo extends Equatable {
         : ReadingModes.fromJson(json['readingModes'] as Map<String, dynamic>),
     pageCount: json['pageCount'] as int?,
     printType: json['printType'] as String?,
+    // convert to dynamic and cast to String :
     categories: (json['categories'] as List<dynamic>?)?.cast<String>(),
     averageRating: json['averageRating'],
     ratingsCount: json['ratingsCount'] as int?,
