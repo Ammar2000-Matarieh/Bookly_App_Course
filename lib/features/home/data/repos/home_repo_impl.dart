@@ -1,9 +1,14 @@
+// repo patterns :
+// not way to impl :
 import 'package:bookly/core/errors/failures.dart';
 import 'package:bookly/core/utils/api_services.dart';
 import 'package:bookly/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/features/home/data/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+
+// dart z pub dev very important handel error :
+// left and right :
 
 class HomeRepoImpl implements HomeRepo {
   final ApiServices apiServices;

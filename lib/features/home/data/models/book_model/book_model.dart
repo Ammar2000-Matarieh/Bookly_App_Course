@@ -31,6 +31,7 @@ class BookModel extends Equatable {
     etag: json['etag'] as String?,
     selfLink: json['selfLink'] as String?,
     volumeInfo: VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
+    // volumeInfo: VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
     saleInfo: json['saleInfo'] == null
         ? null
         : SaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),
