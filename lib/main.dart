@@ -6,5 +6,3 @@ void main() {
   setupServiceLocator();
   runApp(const BooklyApp());
 }
-
-//
