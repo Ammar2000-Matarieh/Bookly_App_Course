@@ -20,7 +20,40 @@ class HomeRepoImpl implements HomeRepo {
     try {
       var data = await apiServices.get(
         endPoint:
-            'volumes?Filtering=free-ebook&Sorting=newest &q=subject:Programming',
+            'volumes?Filtering=free-ebook&Sorting=newest&q=computer science',
+        // subject:
+        // hhhh
+        //Programming
+      );
+
+      List<BookModel> books = [];
+
+      for (var item in data['items']) {
+        try {
+          books.add(BookModel.fromJson(item));
+        } catch (e) {
+          books.add(BookModel.fromJson(item));
+        }
+      }
+      // right side :
+      return right(books);
+    } catch (e) {
+      //connections internet :
+      // return left(ServerFailure(e.toString()));
+      // very important :
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      // e.to String مسج مش صحيح :
+      return left(ServerFailure("Error Data Fetch from Server "));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
+    try {
+      var data = await apiServices.get(
+        endPoint: 'volumes?Filtering=free-ebook&q=subject:Programming',
       );
 
       List<BookModel> books = [];
@@ -41,10 +74,13 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
+  Future<Either<Failure, List<BookModel>>> fetchSimilarBooks({
+    required String categories,
+  }) async {
     try {
       var data = await apiServices.get(
-        endPoint: 'volumes?Filtering=free-ebook&q=subject:Programming',
+        endPoint:
+            'volumes?Filtering=free-ebook&Sorting=relevance &q=subject:Programming',
       );
 
       List<BookModel> books = [];

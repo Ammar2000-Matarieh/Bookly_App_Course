@@ -1,4 +1,5 @@
 import 'package:bookly/features/home/presentation/view/manger/featured_books_cubit/featured_book_cubit.dart';
+import 'package:bookly/features/home/presentation/view/manger/newset_books_cubit/newest_books_cubit.dart';
 import 'package:bookly/features/home/presentation/view/widgets/home_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     BlocProvider.of<FeaturedBookCubit>(context).fetchFeatured();
+    BlocProvider.of<NewestBooksCubit>(context).fetchNewestBooks();
     super.initState();
   }
 

@@ -1,10 +1,12 @@
+import 'package:bookly/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/features/home/presentation/view/widgets/books_details_sections.dart';
 import 'package:bookly/features/home/presentation/view/widgets/custom_book_details_app_bar.dart';
 import 'package:bookly/features/home/presentation/view/widgets/similar_books_section.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
-  const BookDetailsViewBody({super.key});
+  const BookDetailsViewBody({super.key, required this.bookModel});
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class BookDetailsViewBody extends StatelessWidget {
             child: Column(
               children: [
                 CustomBookDetailsAppBar(),
-                BooksDetailsSections(),
+                BooksDetailsSections(bookModel: bookModel),
                 // Responsive UI :
                 Expanded(child: SizedBox(height: 50)),
                 SimilarBooksSections(),
