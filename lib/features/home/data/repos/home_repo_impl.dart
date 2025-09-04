@@ -9,7 +9,7 @@ import 'package:dio/dio.dart';
 
 // dart z pub dev very important handel error :
 // left and right :
-
+// عن طريق local and remote :
 class HomeRepoImpl implements HomeRepo {
   final ApiServices apiServices;
 
@@ -49,8 +49,11 @@ class HomeRepoImpl implements HomeRepo {
     }
   }
 
+  // clean art :
   @override
-  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
+  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks({
+    int pageNumber = 0,
+  }) async {
     try {
       var data = await apiServices.get(
         endPoint: 'volumes?Filtering=free-ebook&q=subject:Programming',
@@ -61,6 +64,7 @@ class HomeRepoImpl implements HomeRepo {
       for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
       }
+      // pageNumber = 0;
       // right side :
       return right(books);
     } catch (e) {

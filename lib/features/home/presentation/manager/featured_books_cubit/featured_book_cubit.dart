@@ -8,15 +8,26 @@ class FeaturedBookCubit extends Cubit<FeaturedBookState> {
   FeaturedBookCubit(this.homeRepoImpl) : super(FeaturedBookInitial());
 
   final HomeRepoImpl homeRepoImpl;
+  // clean arc : courses :
+  Future<void> fetchFeatured({int pageNumber = 0}) async {
+    // clean art :
+    if (pageNumber == 0) {
+      emit(FeaturedBookLoading());
+    } else {
+      emit(FeaturedBookPagination());
+    }
 
-  Future<void> fetchFeatured() async {
-    emit(FeaturedBookLoading());
+    var result = await homeRepoImpl.fetchFeaturedBooks(pageNumber: pageNumber);
 
-    var result = await homeRepoImpl.fetchFeaturedBooks();
-
+    // fold :
     result.fold(
       (failure) {
-        emit(FeaturedBookFailure(failure.errMessage));
+        // clean :
+        if (pageNumber == 0) {
+          emit(FeaturedBookFailure(failure.errMessage));
+        } else {
+          emit(FeaturedBookPaginationFailure(failure.errMessage));
+        }
       },
       (books) {
         emit(FeaturedBookSuccess(books));

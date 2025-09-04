@@ -14,3 +14,6 @@ List<SingleChildWidget> blocProviders = [
     create: (context) => NewestBooksCubit(getIt.get<HomeRepoImpl>()),
   ),
 ];
+
+// service locator :
+// get it :
